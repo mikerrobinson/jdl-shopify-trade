@@ -38,11 +38,7 @@
           }
         }
       },
-      "block_order": [
-        "text",
-        "heading",
-        "button"
-      ],
+      "block_order": ["text", "heading", "button"],
       "settings": {
         "image_overlay_opacity": 40,
         "image_height": "small",
@@ -149,9 +145,7 @@
           }
         }
       },
-      "block_order": [
-        "text"
-      ],
+      "block_order": ["text"],
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
@@ -283,12 +277,7 @@
           }
         }
       },
-      "block_order": [
-        "column7",
-        "column8",
-        "column9",
-        "column10"
-      ],
+      "block_order": ["column7", "column8", "column9", "column10"],
       "settings": {
         "title": "",
         "heading_size": "h1",
@@ -374,12 +363,7 @@
           }
         }
       },
-      "block_order": [
-        "column11",
-        "column12",
-        "column13",
-        "column14"
-      ],
+      "block_order": ["column11", "column12", "column13", "column14"],
       "settings": {
         "title": "You're set up for success",
         "heading_size": "h2",

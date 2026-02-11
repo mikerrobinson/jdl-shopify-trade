@@ -1,0 +1,11 @@
+{
+  "name": "jdl-shopify-trade",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i src/tailwind.css -o assets/site.css --minify",
+    "dev:css": "tailwindcss -i src/tailwind.css -o assets/site.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
+  }
+}

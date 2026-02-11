@@ -9,14 +9,10 @@ config.yml
 .env.local
 .env.*.local
 
-# Node modules (if using build tools)
+# Node modules
 node_modules/
 package-lock.json
 yarn.lock
-
-# Tailwind source files
-src/
-tailwind.config.js
 
 # Build artifacts
 dist/
