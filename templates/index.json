@@ -15,14 +15,14 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "Welcome industry insiders",
+            "text": "Your one stop shop",
             "text_style": "caption-with-letter-spacing"
           }
         },
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Grow your business with us",
+            "heading": "For Aviation, Military, and Marine Supplies",
             "heading_size": "h1"
           }
         },
@@ -40,16 +40,50 @@
       },
       "block_order": ["text", "heading", "button"],
       "settings": {
+        "image": "shopify://shop_images/home-banner.jpg",
         "image_overlay_opacity": 40,
         "image_height": "small",
-        "desktop_content_position": "middle-left",
-        "show_text_box": false,
-        "desktop_content_alignment": "left",
-        "color_scheme": "scheme-5",
         "image_behavior": "none",
-        "mobile_content_alignment": "center",
+        "desktop_content_position": "top-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "scheme-5",
         "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
         "show_text_below": false
+      }
+    },
+    "value_props": {
+      "type": "value-props",
+      "blocks": {
+        "prop1": {
+          "type": "prop",
+          "settings": {
+            "heading": "24h",
+            "subtext": "AOG Service for Contract Customers"
+          }
+        },
+        "prop2": {
+          "type": "prop",
+          "settings": {
+            "heading": "3M",
+            "subtext": "Aero Professionals"
+          }
+        },
+        "prop3": {
+          "type": "prop",
+          "settings": {
+            "heading": "$2M",
+            "subtext": "in Inventory"
+          }
+        }
+      },
+      "block_order": ["prop1", "prop2", "prop3"],
+      "settings": {
+        "prop_direction": "column",
+        "color_scheme": "scheme-4",
+        "padding_top": 16,
+        "padding_bottom": 16
       }
     },
     "multicolumn": {
@@ -58,7 +92,8 @@
         "column1": {
           "type": "column",
           "settings": {
-            "title": "Insert partner logo",
+            "image": "shopify://shop_images/ardrox-logo.png",
+            "title": "",
             "text": "",
             "link_label": "",
             "link": ""
@@ -67,7 +102,8 @@
         "column2": {
           "type": "column",
           "settings": {
-            "title": "Insert partner logo",
+            "image": "shopify://shop_images/hysol-logo.png",
+            "title": "",
             "text": "",
             "link_label": "",
             "link": ""
@@ -76,7 +112,8 @@
         "column3": {
           "type": "column",
           "settings": {
-            "title": "Insert partner logo",
+            "image": "shopify://shop_images/hentzen-logo.png",
+            "title": "",
             "text": "",
             "link_label": "",
             "link": ""
@@ -85,49 +122,25 @@
         "column4": {
           "type": "column",
           "settings": {
-            "title": "Insert partner logo",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column5": {
-          "type": "column",
-          "settings": {
-            "title": "Insert partner logo",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column6": {
-          "type": "column",
-          "settings": {
-            "title": "Insert partner logo",
+            "image": "shopify://shop_images/3m-logo.png",
+            "title": "",
             "text": "",
             "link_label": "",
             "link": ""
           }
         }
       },
-      "block_order": [
-        "column1",
-        "column2",
-        "column3",
-        "column4",
-        "column5",
-        "column6"
-      ],
+      "block_order": ["column1", "column2", "column3", "column4"],
       "settings": {
-        "title": "",
+        "title": "Master Distributor of Major Brands",
         "heading_size": "h1",
-        "image_width": "full",
+        "image_width": "half",
         "image_ratio": "adapt",
-        "columns_desktop": 6,
-        "column_alignment": "center",
-        "background_style": "none",
         "button_label": "",
         "button_link": "",
+        "columns_desktop": 4,
+        "column_alignment": "center",
+        "background_style": "none",
         "color_scheme": "scheme-2",
         "columns_mobile": "2",
         "swipe_on_mobile": true,
@@ -158,18 +171,18 @@
     "featured_collection1": {
       "type": "featured-collection",
       "settings": {
+        "collection": "",
+        "products_to_show": 10,
         "title": "Proven bestsellers",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "",
-        "products_to_show": 10,
         "columns_desktop": 5,
+        "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
-        "enable_desktop_slider": false,
         "color_scheme": "",
         "image_ratio": "adapt",
         "image_shape": "default",
@@ -283,11 +296,11 @@
         "heading_size": "h1",
         "image_width": "full",
         "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
         "columns_desktop": 4,
         "column_alignment": "center",
         "background_style": "none",
-        "button_label": "",
-        "button_link": "",
         "color_scheme": "scheme-2",
         "columns_mobile": "1",
         "swipe_on_mobile": true,
@@ -298,18 +311,18 @@
     "featured_collection2": {
       "type": "featured-collection",
       "settings": {
+        "collection": "",
+        "products_to_show": 6,
         "title": "New arrivals",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "",
-        "products_to_show": 6,
         "columns_desktop": 5,
+        "enable_desktop_slider": true,
         "full_width": false,
         "show_view_all": false,
         "view_all_style": "solid",
-        "enable_desktop_slider": true,
         "color_scheme": "",
         "image_ratio": "adapt",
         "image_shape": "default",
@@ -369,11 +382,11 @@
         "heading_size": "h2",
         "image_width": "full",
         "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
         "columns_desktop": 4,
         "column_alignment": "left",
         "background_style": "primary",
-        "button_label": "",
-        "button_link": "",
         "color_scheme": "scheme-3",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
@@ -384,6 +397,7 @@
   },
   "order": [
     "image_banner",
+    "value_props",
     "multicolumn",
     "rich_text",
     "featured_collection1",

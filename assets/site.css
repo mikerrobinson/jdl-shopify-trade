@@ -118,8 +118,72 @@
   border-width: 0
 }
 
+.tw-flex {
+  display: flex
+}
+
+.tw-h-12 {
+  height: 3rem
+}
+
+.tw-h-full {
+  height: 100%
+}
+
+.tw-w-12 {
+  width: 3rem
+}
+
 .tw-w-full {
   width: 100%
+}
+
+.tw-w-px {
+  width: 1px
+}
+
+.tw-flex-1 {
+  flex: 1 1 0%
+}
+
+.tw-flex-shrink-0 {
+  flex-shrink: 0
+}
+
+.tw-flex-row {
+  flex-direction: row
+}
+
+.tw-flex-col {
+  flex-direction: column
+}
+
+.tw-items-center {
+  align-items: center
+}
+
+.tw-justify-center {
+  justify-content: center
+}
+
+.tw-gap-4 {
+  gap: 1rem
+}
+
+.tw-gap-6 {
+  gap: 1.5rem
+}
+
+.tw-gap-3 {
+  gap: 0.75rem
+}
+
+.tw-divide-theme-fg\/15 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgb(var(--color-foreground) / 0.15)
+}
+
+.tw-self-stretch {
+  align-self: stretch
 }
 
 .tw-whitespace-nowrap {
@@ -130,18 +194,30 @@
   border-bottom-width: 1px
 }
 
+.tw-border-l {
+  border-left-width: 1px
+}
+
 .tw-border-theme-fg\/10 {
   border-color: rgb(var(--color-foreground) / 0.1)
 }
 
-.tw-bg-black {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))
+.tw-border-theme-fg\/50 {
+  border-color: rgb(var(--color-foreground) / 0.5)
 }
 
-.tw-bg-blue-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(191 219 254 / var(--tw-bg-opacity, 1))
+.tw-bg-theme-fg\/50 {
+  background-color: rgb(var(--color-foreground) / 0.5)
+}
+
+.tw-object-contain {
+  -o-object-fit: contain;
+     object-fit: contain
+}
+
+.tw-px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem
 }
 
 .tw-py-2 {
@@ -157,6 +233,19 @@
   text-align: left
 }
 
+.tw-text-center {
+  text-align: center
+}
+
+.tw-font-heading {
+  font-family: var(--font-heading-family)
+}
+
+.tw-text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem
+}
+
 .tw-text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem
@@ -166,6 +255,40 @@
   font-weight: 700
 }
 
+.tw-leading-snug {
+  line-height: 1.375
+}
+
+.tw-leading-tight {
+  line-height: 1.25
+}
+
+.tw-text-theme-fg {
+  --tw-text-opacity: 1;
+  color: rgb(var(--color-foreground) / var(--tw-text-opacity, 1))
+}
+
 .tw-text-theme-fg\/75 {
   color: rgb(var(--color-foreground) / 0.75)
+}
+
+@media (min-width: 750px) {
+  .md\:tw-flex-row {
+    flex-direction: row
+  }
+
+  .md\:tw-gap-0 {
+    gap: 0px
+  }
+
+  .md\:tw-divide-x > :not([hidden]) ~ :not([hidden]) {
+    --tw-divide-x-reverse: 0;
+    border-right-width: calc(1px * var(--tw-divide-x-reverse));
+    border-left-width: calc(1px * calc(1 - var(--tw-divide-x-reverse)))
+  }
+
+  .md\:tw-px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem
+  }
 }

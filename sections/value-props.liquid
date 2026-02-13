@@ -1,0 +1,163 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  if section.settings.prop_direction == 'row'
+    assign prop_class = 'tw-flex-row'
+  else
+    assign prop_class = 'tw-flex-col'
+  endif
+-%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width section-{{ section.id }}-padding">
+    <div class="tw-flex tw-flex-row">
+      {%- for block in section.blocks -%}
+        <div
+          class="tw-flex-1 tw-flex tw-items-center tw-justify-center tw-px-4 tw-py-2{% unless forloop.first %} tw-border-l tw-border-theme-fg/50{% endunless %}"
+          {{ block.shopify_attributes }}
+          {% if settings.animations_reveal_on_scroll %}
+            data-cascade
+            style="--animation-order: {{ forloop.index }};"
+          {% endif %}
+        >
+          <div class="tw-flex {{ prop_class }} tw-items-center tw-gap-3">
+            {%- if block.settings.image != blank -%}
+              <div class="tw-flex-shrink-0 tw-w-12 tw-h-12">
+                {{
+                  block.settings.image
+                  | image_url: width: 96
+                  | image_tag:
+                    widths: '48, 96',
+                    class: 'tw-w-full tw-h-full tw-object-contain',
+                    loading: 'lazy'
+                }}
+              </div>
+            {%- endif -%}
+            <div class="{% if section.settings.prop_direction == 'column' %}tw-text-center{% else %}tw-text-left{% endif %}">
+              {%- if block.settings.heading != blank -%}
+                <p class="tw-text-2xl tw-font-bold tw-font-heading tw-leading-tight tw-text-theme-fg">
+                  {{ block.settings.heading }}
+                </p>
+              {%- endif -%}
+              {%- if block.settings.subtext != blank -%}
+                <p class="tw-text-sm tw-text-theme-fg/75 tw-leading-snug">
+                  {{ block.settings.subtext }}
+                </p>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Value propositions",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "prop_direction",
+      "label": "Prop layout direction",
+      "options": [
+        {
+          "value": "row",
+          "label": "Row (icon beside text)"
+        },
+        {
+          "value": "column",
+          "label": "Column (icon above text)"
+        }
+      ],
+      "default": "row"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 16
+    }
+  ],
+  "blocks": [
+    {
+      "type": "prop",
+      "name": "Value prop",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Icon / image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "24h"
+        },
+        {
+          "type": "text",
+          "id": "subtext",
+          "label": "Subtext",
+          "default": "AOG Service for Contract Customers"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Value propositions",
+      "blocks": [
+        {
+          "type": "prop",
+          "settings": {
+            "heading": "24h",
+            "subtext": "AOG Service for Contract Customers"
+          }
+        },
+        {
+          "type": "prop",
+          "settings": {
+            "heading": "$2M",
+            "subtext": "in Inventory"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

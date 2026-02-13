@@ -16,6 +16,13 @@ module.exports = {
   },
 
   theme: {
+    // Align breakpoints with Trade's media queries
+    screens: {
+      sm: '550px',
+      md: '750px',
+      lg: '990px',
+      xl: '1200px',
+    },
     extend: {
       // ---------- Colors ----------
       // Trade defines colors as raw RGB triplets (e.g. "255,255,255")
