@@ -207,6 +207,11 @@
                   <span class="visually-hidden">{{ 'products.product.sku' | t }}:</span>
                   {{- product.selected_or_first_available_variant.sku -}}
                 </p>
+              {%- when 'military_spec' -%}
+                {%- assign mil_spec = product.metafields.custom.military_specification.value -%}
+                {%- if mil_spec != blank -%}
+                  {% render 'military-spec', mil_spec: mil_spec, section_id: section.id, block: block %}
+                {%- endif -%}
               {%- when 'custom_liquid' -%}
                 {{ block.settings.custom_liquid }}
               {%- when 'collapsible_tab' -%}
@@ -732,8 +737,96 @@
       endif
     -%}
 
+    {%- liquid
+      assign mil_spec_ld = product.metafields.custom.military_specification.value
+      assign ld_variant = product.selected_or_first_available_variant
+    -%}
     <script type="application/ld+json">
-      {{ product | structured_data }}
+      {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": {{ product.title | json }},
+        "url": {{ canonical_url | json }},
+        "description": {{ product.description | strip_html | truncate: 5000 | json }},
+        {%- if seo_media -%}
+          "image": [{{ seo_media | image_url: width: seo_media.width | json }}],
+        {%- endif -%}
+        {%- if product.vendor != blank -%}
+          "brand": {
+            "@type": "Brand",
+            "name": {{ product.vendor | json }}
+          },
+        {%- endif -%}
+        {%- if ld_variant.sku != blank -%}
+          "sku": {{ ld_variant.sku | json }},
+        {%- endif -%}
+        {%- if ld_variant.barcode != blank -%}
+          "gtin": {{ ld_variant.barcode | json }},
+        {%- endif -%}
+        {%- if mil_spec_ld != blank -%}
+          "additionalProperty": [
+            {%- liquid
+              assign prop_items = ''
+              if mil_spec_ld.spec_number != blank
+                capture prop_item
+                  echo '{"@type":"PropertyValue","name":"Military Specification","value":'
+                  echo mil_spec_ld.spec_number | json
+                  echo '}'
+                endcapture
+                if prop_items != ''
+                  assign prop_items = prop_items | append: ',' | append: prop_item
+                else
+                  assign prop_items = prop_item
+                endif
+              endif
+              if mil_spec_ld.type != blank
+                capture prop_item
+                  echo '{"@type":"PropertyValue","name":"Spec Type","value":'
+                  echo mil_spec_ld.type | json
+                  echo '}'
+                endcapture
+                if prop_items != ''
+                  assign prop_items = prop_items | append: ',' | append: prop_item
+                else
+                  assign prop_items = prop_item
+                endif
+              endif
+              if mil_spec_ld.class != blank
+                capture prop_item
+                  echo '{"@type":"PropertyValue","name":"Spec Class","value":'
+                  echo mil_spec_ld.class | json
+                  echo '}'
+                endcapture
+                if prop_items != ''
+                  assign prop_items = prop_items | append: ',' | append: prop_item
+                else
+                  assign prop_items = prop_item
+                endif
+              endif
+              if mil_spec_ld.grade != blank
+                capture prop_item
+                  echo '{"@type":"PropertyValue","name":"Spec Grade","value":'
+                  echo mil_spec_ld.grade | json
+                  echo '}'
+                endcapture
+                if prop_items != ''
+                  assign prop_items = prop_items | append: ',' | append: prop_item
+                else
+                  assign prop_items = prop_item
+                endif
+              endif
+            -%}
+            {{ prop_items }}
+          ],
+        {%- endif -%}
+        "offers": {
+          "@type": "Offer",
+          "url": {{ canonical_url | json }},
+          "priceCurrency": {{ cart.currency.iso_code | json }},
+          "price": {{ ld_variant.price | divided_by: 100.0 | json }},
+          "availability": "https://schema.org/{% if ld_variant.available %}InStock{% else %}OutOfStock{% endif %}"
+        }
+      }
     </script>
   </div>
 </product-info>
@@ -945,6 +1038,11 @@
           "default": "t:sections.main-product.blocks.share.settings.text.default"
         }
       ]
+    },
+    {
+      "type": "military_spec",
+      "name": "Military specification",
+      "limit": 1
     },
     {
       "type": "custom_liquid",

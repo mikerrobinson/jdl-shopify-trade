@@ -106,6 +106,34 @@
   --tw-contain-style:  
 }
 
+.tw-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0
+}
+
+.tw-w-full {
+  width: 100%
+}
+
+.tw-whitespace-nowrap {
+  white-space: nowrap
+}
+
+.tw-border-b {
+  border-bottom-width: 1px
+}
+
+.tw-border-theme-fg\/10 {
+  border-color: rgb(var(--color-foreground) / 0.1)
+}
+
 .tw-bg-black {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))
@@ -114,4 +142,30 @@
 .tw-bg-blue-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(191 219 254 / var(--tw-bg-opacity, 1))
+}
+
+.tw-py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem
+}
+
+.tw-pr-4 {
+  padding-right: 1rem
+}
+
+.tw-text-left {
+  text-align: left
+}
+
+.tw-text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem
+}
+
+.tw-font-bold {
+  font-weight: 700
+}
+
+.tw-text-theme-fg\/75 {
+  color: rgb(var(--color-foreground) / 0.75)
 }

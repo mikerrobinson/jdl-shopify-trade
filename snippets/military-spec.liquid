@@ -1,0 +1,130 @@
+{%- comment -%}
+  Military Specification display snippet.
+  Expects: mil_spec (metaobject), section_id (string), block (block)
+  Renders: inline summary, collapsible details table, hidden search text.
+{%- endcomment -%}
+
+{%- comment -%} --- 1. Inline summary line --- {%- endcomment -%}
+{%- liquid
+  assign spec_parts = ''
+  if mil_spec.document_type != blank
+    assign spec_parts = mil_spec.document_type
+  endif
+  if mil_spec.spec != blank
+    if spec_parts != ''
+      assign spec_parts = spec_parts | append: '-' | append: mil_spec.spec
+    else
+      assign spec_parts = mil_spec.spec
+    endif
+  endif
+  if mil_spec.type != blank
+    if spec_parts != ''
+      assign spec_parts = spec_parts | append: ', ' | append: mil_spec.type
+    else
+      assign spec_parts = mil_spec.type
+    endif
+  endif
+  if mil_spec.class != blank
+    if spec_parts != ''
+      assign spec_parts = spec_parts | append: ', ' | append: mil_spec.class
+    else
+      assign spec_parts = mil_spec.class
+    endif
+  endif
+  if mil_spec.grade != blank
+    if spec_parts != ''
+      assign spec_parts = spec_parts | append: ', ' | append: mil_spec.grade
+    else
+      assign spec_parts = mil_spec.grade
+    endif
+  endif
+-%}
+
+{%- if spec_parts != '' -%}
+  <p class="product__mil-spec-summary tw-text-sm tw-text-theme-fg/75" {{ block.shopify_attributes }}>
+    <strong>Specification:</strong> {{ spec_parts }}
+  </p>
+{%- endif -%}
+
+{%- comment -%} --- 2. Collapsible accordion tab --- {%- endcomment -%}
+<div class="product__accordion accordion quick-add-hidden">
+  <details id="Details-mil-spec-{{ section_id }}">
+    <summary>
+      <div class="summary__title">
+        {% render 'icon-accordion', icon: 'clipboard' %}
+        <h2 class="h4 accordion__title inline-richtext">
+          Military Specification
+        </h2>
+      </div>
+      {{- 'icon-caret.svg' | inline_asset_content -}}
+    </summary>
+    <div class="accordion__content rte" id="ProductAccordion-mil-spec-{{ section_id }}">
+      <table class="tw-w-full tw-text-sm tw-text-left">
+        <thead class="tw-sr-only">
+          <tr>
+            <th>Requirement</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%- if mil_spec.spec != blank -%}
+            <tr class="tw-border-b tw-border-theme-fg/10">
+              <td class="tw-py-2 tw-pr-4 tw-font-bold tw-text-theme-fg/75 tw-whitespace-nowrap">Standard</td>
+              <td class="tw-py-2">{{ mil_spec.spec }}</td>
+            </tr>
+          {%- endif -%}
+          {%- if mil_spec.revision != blank -%}
+            <tr class="tw-border-b tw-border-theme-fg/10">
+              <td class="tw-py-2 tw-pr-4 tw-font-bold tw-text-theme-fg/75 tw-whitespace-nowrap">Revision</td>
+              <td class="tw-py-2">{{ mil_spec.revision }}</td>
+            </tr>
+          {%- endif -%}
+          {%- if mil_spec.type != blank -%}
+            <tr class="tw-border-b tw-border-theme-fg/10">
+              <td class="tw-py-2 tw-pr-4 tw-font-bold tw-text-theme-fg/75 tw-whitespace-nowrap">Type</td>
+              <td class="tw-py-2">{{ mil_spec.type }}</td>
+            </tr>
+          {%- endif -%}
+          {%- if mil_spec.class != blank -%}
+            <tr class="tw-border-b tw-border-theme-fg/10">
+              <td class="tw-py-2 tw-pr-4 tw-font-bold tw-text-theme-fg/75 tw-whitespace-nowrap">Class</td>
+              <td class="tw-py-2">{{ mil_spec.class }}</td>
+            </tr>
+          {%- endif -%}
+          {%- if mil_spec.grade != blank -%}
+            <tr class="tw-border-b tw-border-theme-fg/10">
+              <td class="tw-py-2 tw-pr-4 tw-font-bold tw-text-theme-fg/75 tw-whitespace-nowrap">Grade</td>
+              <td class="tw-py-2">{{ mil_spec.grade }}</td>
+            </tr>
+          {%- endif -%}
+          {%- if mil_spec.title != blank -%}
+            <tr class="tw-border-b tw-border-theme-fg/10">
+              <td class="tw-py-2 tw-pr-4 tw-font-bold tw-text-theme-fg/75 tw-whitespace-nowrap">Title</td>
+              <td class="tw-py-2">{{ mil_spec.title }}</td>
+            </tr>
+          {%- endif -%}
+          {%- if mil_spec.supersedes != blank -%}
+            <tr>
+              <td class="tw-py-2 tw-pr-4 tw-font-bold tw-text-theme-fg/75 tw-whitespace-nowrap">Supersedes</td>
+              <td class="tw-py-2">{{ mil_spec.supersedes | join: ', ' }}</td>
+            </tr>
+          {%- endif -%}
+        </tbody>
+      </table>
+    </div>
+  </details>
+</div>
+
+{%- comment -%} --- 3. Hidden search text --- {%- endcomment -%}
+<span class="visually-hidden">
+  {%- if mil_spec.spec != blank -%}
+    {{ mil_spec.spec }}
+    {{ mil_spec.spec | remove: '-' }}
+  {%- endif -%}
+  {%- if mil_spec.supersedes != blank -%}
+    {%- for legacy_spec in mil_spec.supersedes -%}
+      {{ legacy_spec }}
+      {{ legacy_spec | remove: '-' }}
+    {%- endfor -%}
+  {%- endif -%}
+</span>
