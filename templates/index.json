@@ -66,7 +66,8 @@
         "prop2": {
           "type": "prop",
           "settings": {
-            "heading": "3M",
+            "image": "shopify://shop_images/3m-logo.svg",
+            "heading": "",
             "subtext": "Aero Professionals"
           }
         },
@@ -80,10 +81,8 @@
       },
       "block_order": ["prop1", "prop2", "prop3"],
       "settings": {
-        "prop_direction": "column",
-        "color_scheme": "scheme-4",
-        "padding_top": 16,
-        "padding_bottom": 16
+        "prop_direction": "row",
+        "color_scheme": "scheme-4"
       }
     },
     "multicolumn": {
@@ -122,7 +121,7 @@
         "column4": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/3m-logo.png",
+            "image": "shopify://shop_images/3m-logo.svg",
             "title": "",
             "text": "",
             "link_label": "",
