@@ -37,28 +37,3 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ og_title | escape }}">
 <meta name="twitter:description" content="{{ og_description | escape }}">
-
-{%- if request.page_type == 'product' -%}
-  {%- assign mil_spec_meta = product.metafields.custom.military_specification.value -%}
-  {%- if mil_spec_meta != blank -%}
-    {%- liquid
-      assign kw_parts = ''
-      if mil_spec_meta.spec_number != blank
-        assign spec_no_hyphens = mil_spec_meta.spec_number | remove: '-'
-        assign kw_parts = mil_spec_meta.spec_number | append: ', ' | append: spec_no_hyphens
-      endif
-      if mil_spec_meta.supersedes != blank
-        for legacy in mil_spec_meta.supersedes
-          assign legacy_no_hyphens = legacy | remove: '-'
-          if kw_parts != ''
-            assign kw_parts = kw_parts | append: ', '
-          endif
-          assign kw_parts = kw_parts | append: legacy | append: ', ' | append: legacy_no_hyphens
-        endfor
-      endif
-    -%}
-    {%- if kw_parts != '' -%}
-      <meta name="keywords" content="{{ kw_parts | escape }}">
-    {%- endif -%}
-  {%- endif -%}
-{%- endif -%}
